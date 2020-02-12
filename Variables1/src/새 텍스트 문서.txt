@@ -1,0 +1,11 @@
+syso("" + "");
+syso(true + "");
+syso('A' + 'B');
+syso('1' + 2);
+syso('1' + '2');
+syso('J' + "ava");
+syso(true + null);
+
+'1'은 49
+'A'는 65
+'J'는 74이다
