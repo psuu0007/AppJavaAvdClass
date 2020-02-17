@@ -19,16 +19,30 @@ public class ArrayEx1 {
 		System.out.println("=====배열 시작=====");
 		System.out.println();
 //		배열(Array)
+//		같은 타입의 여러 변수를 하나의 묶음으로 다루는 것
 //		표현식 
 //		타입[] 변수이름;
-		int[] scoreArr = null;
+		int[] scoreArr = null; // 선언문  null기본값
 		scoreArr = new int[5];
 		
-		System.out.println(scoreArr[0]);
-		System.out.println(scoreArr[1]);
-		System.out.println(scoreArr[2]);
-		System.out.println(scoreArr[3]);
-		System.out.println(scoreArr[4]);
+		for (int i = 0; i < 5; i++) {
+			scoreArr[i] = i+1;
+		}
+		
+//		scoreArr[0] = 1;
+//		scoreArr[1] = 2;
+//		scoreArr[2] = 3;
+//		scoreArr[3] = 4;
+//		scoreArr[4] = 5;
+		
+		for (int i = 0; i < 5; i++) {
+			System.out.println(scoreArr[i]);
+		}
+//		System.out.println(scoreArr[0]);
+//		System.out.println(scoreArr[1]);
+//		System.out.println(scoreArr[2]);
+//		System.out.println(scoreArr[3]);
+//		System.out.println(scoreArr[4]);
 		
 	}
 
