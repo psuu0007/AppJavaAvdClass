@@ -1,5 +1,5 @@
 
-// 버블 1단계
+// 버블 2단계
 public class ArrayEx7 {
 
 	public static void main(String[] args) {
@@ -11,11 +11,12 @@ public class ArrayEx7 {
 		for (int i = 0; i < numArr.length; i++) {
 			System.out.print(numArr[i] + "  ");
 		}
+		System.out.println();
 		
 		int cnt = 0;
 		int tempNum = 0;
-		
 		for (int i = 0; i < numArr.length; i++) {
+			System.out.println((i+1) + "번째 수행값 :\t");
 			for (int n = 0; n < numArr.length-1-i; n++) {
 				cnt++;
 				if(numArr[n] > numArr[n+1]) {
@@ -23,7 +24,14 @@ public class ArrayEx7 {
 					numArr[n] = numArr[n+1];
 					numArr[n+1] = tempNum;
 				} // if end
+				
+				for (int j = 0; j < numArr.length; j++) {
+					System.out.print(numArr[j] + "  ");
+				}
+				System.out.println();
 			} // n for end
+			
+			
 		} // i for end
 		
 		System.out.println();
