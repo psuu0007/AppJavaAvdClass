@@ -28,7 +28,7 @@ public class ArrayEx8 {
 			for (int n = 0; n < numArr.length-1-i; n++) {
 				cnt++;
 				// 오름차순
-				if(numArr[n] > numArr[n+1]) {
+				if(numArr[n] < numArr[n+1]) {
 					tempNum = numArr[n];
 					numArr[n] = numArr[n+1];
 					numArr[n+1] = tempNum;
