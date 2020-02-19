@@ -13,6 +13,11 @@ public class GugudanVer2Exam {
 		// TODO Auto-generated method stub
 		
 		int[][] mulNumArr = new int[0][0];
+//		int[][] mulNumArr = {
+//				{2, 4, 6, 8},
+//				{3, 6, 9, 27},
+//				{9, 18}
+//		};
 		
 //		2 * 1 = mulNumArr[0][0] 2 * 2 = 4
 //		3 * 1 = 3 3 * 2 = 6  ,,,,,,,   3 * 9 = 27		

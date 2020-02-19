@@ -14,6 +14,7 @@ public class GugudanVer1Exam {
 		
 		int[] mulNumArr = new int[0];
 		
+		
 //		2 + "*" + = (2 * i)
 //		2 * 1 = mulNumArr[0] 3 * 1 = mulNumArr[1]  ,,, 	9 * 1 = mulNumArr[8]
 //		2 * 2 = 4 3 * 2 = 6  ,,, 	9 * 2 = 18
