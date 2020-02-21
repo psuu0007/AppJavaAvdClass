@@ -10,17 +10,14 @@ public class TvMain3 {
 
 		tv.channel = 7;
 		tv.power = true;
-		tv.color = "red";
 
 		System.out.println("Tv 정보");
 		System.out.println(tv.channel);
 		System.out.println(tv.power);
-		System.out.println(tv.color);
 		
 		System.out.println("Tv2 정보");
 		System.out.println(tv2.channel);
 		System.out.println(tv2.power);
-		System.out.println(tv2.color);
 		
 		tv2 = tv;
 		System.out.println("복제 성공함");
@@ -29,12 +26,10 @@ public class TvMain3 {
 		System.out.println("Tv 정보");
 		System.out.println(tv.channel);
 		System.out.println(tv.power);
-		System.out.println(tv.color);
 		
 		System.out.println("Tv2 정보");
 		System.out.println(tv2.channel);
 		System.out.println(tv2.power);
-		System.out.println(tv2.color);
 		
 		tv2.channel = 1000;
 		System.out.println("tv2 정보 변경함");
@@ -43,12 +38,10 @@ public class TvMain3 {
 		System.out.println("Tv 정보");
 		System.out.println(tv.channel);
 		System.out.println(tv.power);
-		System.out.println(tv.color);
 		
 		System.out.println("Tv2 정보");
 		System.out.println(tv2.channel);
 		System.out.println(tv2.power);
-		System.out.println(tv2.color);
 		
 		
 	}
