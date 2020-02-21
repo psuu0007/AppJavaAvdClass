@@ -10,7 +10,12 @@ public class Card {
 	Card(){
 		
 	}
-//	랜덤 뽑기
+	
+	public Card(int shapeIndex, int numberIndex) {
+		init(shapeIndex, numberIndex);
+	}
+	
+	//	랜덤 뽑기
 	void init() {
 		// 모양 랜덤
 		int shapeIndex = (int)(Math.random() * shapeArr.length);
