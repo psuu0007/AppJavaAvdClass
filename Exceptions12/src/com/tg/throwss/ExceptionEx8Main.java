@@ -13,7 +13,7 @@ public class ExceptionEx8Main {
 			int num = test1.method2();
 			System.out.println("dfsdf");
 			System.out.println(num);
-		} catch (Exception e) {
+		} catch (ArithmeticException e) {
 			// TODO Auto-generated catch block
 			System.out.println("예외 처리됨");
 		}
