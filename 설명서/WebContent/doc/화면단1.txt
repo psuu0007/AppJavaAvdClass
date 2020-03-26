@@ -1,0 +1,123 @@
+Port 8080 required by Tomcat v9.0 Server at localhost 
+is already in use. 
+The server may already be running in another process, 
+or a system process may be using the port. 
+To start this server you will need to stop the other process 
+or change the port number(s).
+
+
+파일명 자기소개.html
+
+프로젝트명 testHtml
+
+자신의 이름: 박성욱
+자신의 나이: 34
+나의 각오 한마디: ???????
+
+
+
+WAS? (Web Application Server)
+
+WAS의 개념
+DB 조회나 다양한 로직 처리를 요구하는 동적인 컨텐츠를 제공하기 위해 만들어진 Application Server
+
+인터넷 상에서 HTTP를 통해 사용자 컴퓨터나 장치에 애플리케이션을 수행해 주는 미들웨어(소프트웨어 엔진)로서, 
+Server 단에서 Application을 동작할 수 있도록 지원한다. 
+
+웹 서버만으로는 HTML형식의 정적인 정보만이 서비스가 가능하기 때문에, 동적인(사용자에 따라 다른 정보를 서비스하는) 
+정보를 서비스하기 위해서는 WAS가 필요하다
+
+
+
+네이버
+w3스쿨
+내가 즐겨찾는 사이트
+
+
+
+
+
+D:\자바안드예제\1.HTML\1-10\images\hgf.txt
+절대 경로
+
+root       
+/jo.jpg
+
+
+./icox_logo.gif
+상대 경로
+.    나 자신의 위치
+..   나의 위치에서 상위로 한칸 이동
+/    폴더
+
+icox_logo  파일이름
+gif  파일 확장자
+
+
+
+웹 표준 : 브라우저 종류 및 버전에 따른 기능 차이에 대하여 호환이 가능하도록 제시된 표준
+   
+웹 접근성 : 제약을 가진 사용자(장애인, 노인 등), 혹은 어떠한 기술환경에서도 전문적인 능력 없이 
+          웹 사이트에서 제공하는 모든 정보에 접근할 수 있도록 보장하는 것
+
+
+
+내가 좋아하는 이상형
+
+3명 의 사진을
+
+firstFolder에 넣는다
+
+그 3개의 이미지 파일을 출력하시오
+
+기준은
+WebContent 폴더 위치에서 수행한다
+
+
+
+화면단 : 인터프리터         하나씩, 순서대로
+
+
+뒷단, 서버단 : 컴파일러, 모든 내용 파악
+
+
+
+
+
+
+
+1번 문제
+입사지원
+서류전형
+1차면접
+적성검사
+최종면접
+신체검사
+
+2번 문제
+기업소개
+사업영역
+제품소개
+고객센터
+홍보자료실
+인재채용
+
+
+
+주소(URL)
+
+https://www.w3schools.com/default.asp
+https://www.naver.com/
+
+      /   주소          :포트번호(port) / 프로젝트명 / 파일명  
+http://localhost:8090/htmlBasic2/NewFile.jsp
+
+http://localhost:8090/htmlBasic/blockElement.jsp
+
+http://localhost:8090/htmlBasic/imageTag.jsp
+
+http://localhost:9090/htmlBasic/imageTag.jsp
+
+http://
+
+
