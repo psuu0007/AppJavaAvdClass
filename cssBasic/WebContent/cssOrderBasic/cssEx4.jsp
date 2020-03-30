@@ -12,9 +12,6 @@
 #id_first {
 	color: blue;
 }
-#root li {
-	color: red;
-}
 div ol .cl_first, #id_third {
 	color: yellow;
 }
@@ -24,7 +21,10 @@ div ol .cl_first, #id_third {
 div ol li{
 	color: olive;
 }
-div ol #id_first, div > ol > .cl_second {
+div > ol > .cl_second {
+	color: purple;
+} 
+div ol #id_first{
 	color: green;
 } 
 

@@ -17,6 +17,10 @@ css 우선순위 규칙
 	
 	케스케이딩(우선순위)를 결정하는 요소
 	1. 중요도
+	2. 명시도(선택자, 깊이)
+	3. 코드의 순서
+	
+	1. 중요도
 	저작자 !important > 저작자 CSS > 사용자 CSS > 브라우저 CSS
 	
 	2. 선택자에 따른 명시도
@@ -28,6 +32,40 @@ css 우선순위 규칙
 	
 	3. 코드 순서
 	선택자의 종류와 깊이가 같을 때 우선순위의 결정 방식은 코드의 순서이다
+	
+	정주 레드, 레드, 레드
+	아름 그린, 레드, 레드
+	환상 그린, 레드, 레드
+	찬양 그린, 그린, 엘로
+	김홍 그린, 그린, 엘로
+	
+	cssEx3 수행순서 
+	first태그
+	div ol li
+	div ol .cl_first
+	#id_first
+	#root li
+	div ol #id_first
+	
+	second태그
+	div ol li
+	.cl_second
+	div > ol > .cl_second
+	#root li
+	
+	third태그
+	div ol li
+	#id_third
+	#root li
+	
+	
+	정주 초록, 보라, 노랑
+	아름 초록, 보라, 노랑
+	환상 초록, 보라, 노랑
+	찬양 초록, 보라, 노랑
+	김홍 초록, 보라, 노랑
+	
+	
 	
 	
 	
