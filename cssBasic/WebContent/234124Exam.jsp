@@ -5,48 +5,50 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset= UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <style type="text/css">
-h1, p, div {
-	font-size: 20px;
+* {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+/* 	list-style-type: none; */
+}
+
+
+
+
+#gnb li{
+	display: inline-block;
+ 	background: #c00; 
+ 	color: #blue; 
+	width: 100px;
+	height: 23px;
+	padding-top: 10px;
 	text-align: center;
-	border: 1px solid #000000;
-	color: red;
 }
 
-h1 {
-	color: #FFA7A7;
-}
-
-p {
-	color: #FFC19E;
-}
-
-div {
-	color: #FAED7D;
-}
-
-div>a {
-	color: #B7F0B1;
+#gnb li {
+ 	background: #369; 
 }
 </style>
 
 </head>
 
 <body>
-
-	<h1>웹 표준 퍼블리싱</h1>
-	<p>웹디자인의 한 분야로 원래 용어는 웹 컨텐츠 UI 디자인이다.</p>
-
-	<div>
-		<a>그룹 선택자를 활용해 보자</a>
+	<div id="container">
+		<h1>주메뉴</h1>
+		<ul id="gnb">
+			<li>COMPANY</li>
+			<li>PRODUCT</li>
+			<li>SERVICE</li>
+			<li>COMMUNITY</li>
+		</ul>
 	</div>
 
-	<div>냉무</div>
-
 </body>
-
 
 </html>
