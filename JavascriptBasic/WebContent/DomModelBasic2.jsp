@@ -49,18 +49,8 @@
 </body>
 
 <script type="text/javascript">
-	/* var ulObj = document.getElementById('list');
-	var liObjArr = ulObj.getElementsByTagName('li');
-	
-	var myObj = liObjArr[1];
-	
-	myObj.style.border = '1px solid red'; */
-	
-	var ulObjList = document.getElementsByTagName('ul');
-	var myLiObj = ulObjList[1].getElementsByTagName('li');
-	
-	myLiObj.style.border = '1px solid red';
-	
+	var myObj = document.getElementById('title');
+	myObj.style.color = 'red';
 </script>
 
 </html>
