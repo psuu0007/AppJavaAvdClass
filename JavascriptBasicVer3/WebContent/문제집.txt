@@ -1,0 +1,28 @@
+브라우저 객체(Browser Object Model)
+
+BOM이란? 
+브라우저 창에 포함된 모든 객체 요소들을 의미한다.
+브라우저라는 것도 결국 창(윈도우) 안에서 실행되는 프로그램이므로,
+각 객체들은 최상위 객체인 window 아래에 존재한다.
+
+window
+	document - 문서 객체이며, 하위에 form, cookie, images등이 존재
+	navigator - 브라우저에 대한 정보를 제공하는 객체
+	location - 위치(url)관련 정보를 제공하는 객체
+	screen - 스크린(모니터)에 대한 정보를 제공하는 객체
+	history - 인터넷 방문 기록에 대한 정보를 제공하는 객체
+	
+window
+모든 객체의 최상위 객체이다.
+alert     	- 경고창을 열 때 사용
+prompt    	- 질문/응답창을 열 때 사용
+confirm		- 확인/취소창을 열 때 사용
+등
+
+
+
+
+
+
+
+
