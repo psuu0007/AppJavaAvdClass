@@ -17,15 +17,15 @@
 </body>
 
 <script type="text/javascript">
+// 	1. 2~9까지 들어있는 배열
+	var danList = new Array();
 	
-	/* 배열에다가 2000년부터 2020년 까지 있다
-	윤년 판별을 해라
-	console 로그에다가 출력한다.
+// 	2. 1 ~9까지 들어있는 배열
+	var numList = new Array();
 	
-	2000년은 윤년이 아니다
-	2001년은 윤년이다
-	...
-	2020년은 윤년이다 */
+// 	3. 2*1 ~ 9*9까지 들어있는 배열
+	var formalList = new Array();
+	
 </script>
 
 </html>

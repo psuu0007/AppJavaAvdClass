@@ -6,57 +6,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-
 </head>
 
 <body>
-   <div id='demo'>
-      I can eat bananas all day
-   </div>
-   
-   <input onclick="txtChangeFnc();" type="button" value="실행">
 
 </body>
-
 <script type="text/javascript">
-   
-   /* 13_2 수정  */
-   function txtChangeFnc(){
-      var questionStr = '';
-      questionStr = 'Iam can eat ban all day';
-      
-      var solutionStr = '';
-      var strList = questionStr.split(' '); 
-   
-      //i 소문자화
-      strList[0] = strList[0].toLowerCase();
-      
-      //a만 대문자화
-      strList[4] = strList[4].charAt(0).toUpperCase() + 
-      	strList[4].substring(1, strList[4].length);
-      
-      //재조합
-      solutionStr += strList[4] + ' ';
-      solutionStr += strList[2] + ' ';
-      solutionStr += strList[1] + ' ';
-      solutionStr += strList[5] + ' ';
-      solutionStr += strList[3] + ' ';
-      solutionStr += strList[0];
-      
-     
-      //원하는 출력
-      //var solutionStr = 'All eat can day bananas i';
-      document.getElementById('demo').innerHTML = solutionStr;
+   /* 배열에다가 2000년부터 2020년까지 윤년 판별을 해라
+      결과는 console log로 출력해라  */
+
+   var leapYearArr = new Array();
+
+   var startYear = 1900;
+   var endYear = 2020;
+   var count = 0;
+
+   for (var i = startYear; i <= endYear; i++) {
+      leapYearArr[count] = i;
+      if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0)) {
+         leapYearArr[count] = i + " : 윤년";
+         //console.log(leapYearArr[count] + " : 윤년입니다.");
+         count++;
+      } else {
+         leapYearArr[count] = i + " : 윤년이 아닙니다.";
+         //console.log(leapYearArr[count] + " : 윤년이 아닙니다.");
+         count++;
+      }
    }
-   
-   
+   console.log(leapYearArr);
 </script>
 
 </html>
-
-
-
-
-
-

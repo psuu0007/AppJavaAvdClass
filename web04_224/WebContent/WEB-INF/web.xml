@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>web04_224</display-name>
+
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>MemberList</servlet-name> -->
+<!-- 		<servlet-class>spms.servlets.MemberListServlet</servlet-class> -->
+<!-- 	</servlet> -->
+
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>MemberList</servlet-name> -->
+<!-- 		<url-pattern>/member/list</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+	<context-param>
+		<param-name>driver</param-name>
+		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>url</param-name>
+		<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+	</context-param>
+	<context-param>
+		<param-name>user</param-name>
+		<param-value>jsp</param-value>
+	</context-param>
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>jsp12</param-value>
+	</context-param>
+	
+	
+	<servlet>
+		<servlet-name>MemberAdd</servlet-name>
+		<servlet-class>spms.servlets.MemberAddServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MemberAdd</servlet-name>
+		<url-pattern>/member/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MemberUpdate</servlet-name>
+		<servlet-class>spms.servlets.MemberUpdateServlet</servlet-class>
+
+		<!-- init-param 지움 -->		
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MemberUpdate</servlet-name>
+		<url-pattern>/member/update</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberDelete</servlet-name>
+		<servlet-class>spms.servlets.MemberDeleteServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MemberDelete</servlet-name>
+		<url-pattern>/member/delete</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
