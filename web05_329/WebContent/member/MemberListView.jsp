@@ -20,12 +20,26 @@
 		<a href='add'>신규 회원</a>
 	</p>
 
+	<jsp:useBean 
+		id="memberList"
+		scope="request"
+		class="java.util.ArrayList"
+		type="java.util.ArrayList<spms.dto.MemberDto>"
+	/>
+	
+	<jsp:useBean 
+		id="testActionTag"
+		scope="request"
+		class="spms.dto.MemberDto"
+	/>
+	
 	<%
-		ArrayList<MemberDto> memberList = 
-			(ArrayList<MemberDto>)request.getAttribute("memberList");
-			
+		System.out.println(testActionTag);
+	
 		for(MemberDto memberDto : memberList){
+			
 	%>
+	
 	<%=memberDto.getNo()%>,
 	<a href='update?no=<%=memberDto.getNo()%>'>
 		<%=memberDto.getName() %>
