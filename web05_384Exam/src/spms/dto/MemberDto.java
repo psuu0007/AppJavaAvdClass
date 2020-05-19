@@ -3,39 +3,33 @@ package spms.dto;
 import java.util.Date;
 
 public class MemberDto {
-
 	private int no;
 	private String name;
 	private String email;
 	private String password;
-	private Date createDate;
+	private Date createdDate;
 	private Date modifiedDate;
-	
+
 	public MemberDto() {
 		super();
 	}
 
-	public MemberDto(int no, String name, String email
-		, Date createDate) {
-		super();
-		this.no = no;
-		this.name = name;
-		this.email = email;
-		this.createDate = createDate;
-	}
-
-
-
-	public MemberDto(int no, String name, 
-			String email, String password, 
-			Date createDate, Date modifiedDate) {
+	public MemberDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate) {
 		super();
 		this.no = no;
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.createDate = createDate;
+		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
+	}
+
+	public MemberDto(int no, String name, String email, Date createdDate) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.email = email;
+		this.createdDate = createdDate;
 	}
 
 	public int getNo() {
@@ -70,12 +64,12 @@ public class MemberDto {
 		this.password = password;
 	}
 
-	public Date getCreateDate() {
-		return createDate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public Date getModifiedDate() {
@@ -88,10 +82,8 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [no=" + no + ", name=" + name 
-				+ ", email=" + email + ", password=" + password
-				+ ", createDate=" + createDate 
-				+ ", modifiedDate=" + modifiedDate + "]";
+		return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", createdDate="
+				+ createdDate + ", modifiedDate=" + modifiedDate + "]";
 	}
 	
 }

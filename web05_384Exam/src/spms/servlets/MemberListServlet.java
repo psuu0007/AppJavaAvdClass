@@ -2,12 +2,7 @@ package spms.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -20,51 +15,48 @@ import javax.servlet.http.HttpServletResponse;
 import spms.dao.MemberDao;
 import spms.dto.MemberDto;
 
-@WebServlet("/member/list")
-public class MemberListServlet extends HttpServlet {
+@WebServlet(value="/member/list")
+public class MemberListServlet extends HttpServlet{
+	
+	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, 
-			HttpServletResponse response) 
-					throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException{
 		// TODO Auto-generated method stub
-		
-		Connection conn = null; 
+		Connection conn = null;
 		
 		try {
 			ServletContext sc = this.getServletContext();
-			
-			conn = (Connection)sc.getAttribute("conn");
+			conn = (Connection) sc.getAttribute("conn");
 			
 			MemberDao memberDao = new MemberDao();
 			memberDao.setConnection(conn);
 			
 			ArrayList<MemberDto> memberList = null;
 			
+			// 데이터베이스에서 회원 정보를 가져온다
 			memberList = (ArrayList<MemberDto>)memberDao.selectList();
 			
+			// request에 회원 목록 데이터 보관한다
 			request.setAttribute("memberList", memberList);
+
+			response.setContentType("text/html");
+			response.setCharacterEncoding("UTF-8");
 			
-			// jsp페이지로 출력을 위임한다
+			//jsp로 출력을 위임한다
 			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher(
-							"/member/MemberListView.jsp");
-			dispatcher.forward(request, response);
+					request.getRequestDispatcher("./MemberListView.jsp");
 			
+			dispatcher.include(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", e);
-			RequestDispatcher dispatcher =
+			RequestDispatcher dispatcher = 
 					request.getRequestDispatcher("/Error.jsp");
 			dispatcher.forward(request, response);
+			
 		}
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, 
-			HttpServletResponse resp) 
-					throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("asd");
+		
 	}
 	
 }

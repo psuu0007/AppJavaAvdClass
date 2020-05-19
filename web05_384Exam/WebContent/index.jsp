@@ -17,7 +17,7 @@
 
 <body>
 
-	<p onclick="listPageMoveFnc();">376 페이지</p>
+	<p onclick="listPageMoveFnc();">web05_384 페이지</p>
 
 </body>
 
