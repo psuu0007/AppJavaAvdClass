@@ -9,15 +9,8 @@
 
 </head>
 
-<jsp:useBean 
-	id="memberDto"
-	scope="session"
-	class="spms.dto.MemberDto"
-/>
-
 <body>
 
-	<p><jsp:getProperty property="name" name="memberDto"/> 님</p>
 	<p>
 		죄송합니다. 요청하신 페이지를 찾을 수 없습니다. 
 		방문하시려는 페이지의 주소가 잘못 입력되었거나, 페이지의 주소가

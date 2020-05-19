@@ -62,28 +62,23 @@ public class MemberListServlet extends HttpServlet {
 			String email = "";
 			Date creDate = null;
 			
-			
-			MemberDto memberDto = null;
 			while (rs.next()) {
 				mno = rs.getInt("MNO");
 				mname = rs.getString("MNAME");
 				email = rs.getString("EMAIL");
 				creDate = rs.getDate("CRE_DATE");
 				
-				memberDto = new MemberDto(mno, mname, email, creDate);
+				MemberDto memberDto = new MemberDto();
+				memberDto.setNo(mno);
+				memberDto.setName(mname);
+				memberDto.setEmail(email);
+				memberDto.setCreateDate(creDate);
 				
 				memberList.add(memberDto);
-				
-//				memberDto = new MemberDto(mno, mname, email, creDate);
-//				memberDto.setNo(mno);
-//				memberDto.setName(mname);
-//				memberDto.setEmail(email);
-//				memberDto.setCreateDate(creDate);
 			}
 			
 			// request에 회원 목록 데이터 보관
 			request.setAttribute("memberList", memberList);
-			request.setAttribute("testActionTag", memberDto);
 			
 			// jsp페이지로 출력을 위임한다
 			RequestDispatcher dispatcher = 

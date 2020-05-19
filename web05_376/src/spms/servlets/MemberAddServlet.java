@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,29 +22,7 @@ public class MemberAddServlet extends HttpServlet {
 			HttpServletResponse res) 
 					throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		super.doGet(req, res);
-
-		System.out.println("대박사건 doGet이 호출되는 구나");
-
-		res.setContentType("text/html");
-		res.setCharacterEncoding("UTF-8");
-		PrintWriter out = res.getWriter();
-
-		String htmlStr = "";
-
-		htmlStr += "<html><head><title>회원 등록</title></head>";
-		htmlStr += "<body>";
-		htmlStr += "<h1>회원등록</h1>";
-		htmlStr += "<form action='add' method='post'>";
-		htmlStr += "이름: <input type='text' name='name'><br>";
-		htmlStr += "이메일: <input type='text' name='email'><br>";
-		htmlStr += "암호: <input type='password' name='password'><br>";
-		htmlStr += "<input type='submit' value='추가'>";
-		htmlStr += "<input type='reset' value='취소'>";
-		htmlStr += "</form>";
-		htmlStr += "</body></html>";
-
-		out.println(htmlStr);
+		res.sendRedirect("../member/MemberForm.jsp");
 	}
 
 	@Override
@@ -101,10 +78,6 @@ public class MemberAddServlet extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			RequestDispatcher dispatcher =
-					req.getRequestDispatcher("/Error.jsp");
-			dispatcher.forward(req, res);
-			
 		} finally {
 			if (pstmt != null) {
 				try {

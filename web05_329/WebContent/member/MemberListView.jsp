@@ -27,14 +27,18 @@
 		type="java.util.ArrayList<spms.dto.MemberDto>"
 	/>
 	
-	<jsp:useBean 
-		id="testActionTag"
-		scope="request"
-		class="spms.dto.MemberDto"
-	/>
+<%-- 	<jsp:useBean  --%>
+<%-- 		id="testActionTag" --%>
+<%-- 		scope="request" --%>
+<%-- 		class="spms.dto.MemberDto" --%>
+<%-- 	/> --%>
+	
+<%-- 	<jsp:setProperty property="password" name="testActionTag"  --%>
+<%-- 		value="amazing"/> --%>
+<%-- 	<jsp:getProperty property="password" name="testActionTag"/> --%>
 	
 	<%
-		System.out.println(testActionTag);
+// 		System.out.println(testActionTag);
 	
 		for(MemberDto memberDto : memberList){
 			
@@ -42,7 +46,7 @@
 	
 	<%=memberDto.getNo()%>,
 	<a href='update?no=<%=memberDto.getNo()%>'>
-		<%=memberDto.getName() %>
+		<%=memberDto.getName()%>
 	</a>,
 	<%=memberDto.getEmail()%>,
 	<%=memberDto.getCreateDate()%>
