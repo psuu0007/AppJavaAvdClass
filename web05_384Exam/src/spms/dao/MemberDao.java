@@ -264,5 +264,71 @@ public class MemberDao {
 		return result;
 	}
 
+	// 사용자 존재 유무 없으면 null 리턴
+	public MemberDto memberExist(String email, String pwd) 
+		throws SQLException {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+
+		sql += "SELECT MNAME, EMAIL";
+		sql += " FROM MEMBER";
+		sql += " WHERE EMAIL = ?";
+		sql += " AND PWD = ?";
+		
+		String name = "";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int colIndex = 1;
+			
+			pstmt.setString(colIndex++, email);
+			pstmt.setString(colIndex, pwd);
+			
+			rs = pstmt.executeQuery();
+			
+			MemberDto memberDto = new MemberDto();
+			
+			if(rs.next()) {
+				email = rs.getString("email");
+				name = rs.getString("mname");
+				
+				memberDto.setEmail(email);
+				memberDto.setName(name);
+				
+				// 회원 정보 조회 확인
+				return memberDto;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// 회원이 조회가 안된 경우
+		return null;
+	}
+	
 	
 }

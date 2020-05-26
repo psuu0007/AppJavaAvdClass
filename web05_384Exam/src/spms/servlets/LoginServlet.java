@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import spms.dao.MemberDao;
 import spms.dto.MemberDto;
 
 @WebServlet(value = "/auth/login")
@@ -36,77 +37,37 @@ public class LoginServlet extends HttpServlet {
 					throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		// 데이터베이스 관련 객체 변수 선언
-		Connection conn = null; // 연결
-		PreparedStatement pstmt = null; // 상태
-		ResultSet rs = null; // 결과
+		Connection conn = null;
 
-		String sql = "";
-		int colIndex = 1;
-		
 		try {
+			String email = req.getParameter("email");
+			String pwd = req.getParameter("password");
+			
 			ServletContext sc = this.getServletContext();
 			
 			conn = (Connection) sc.getAttribute("conn");
 			
-			String email = req.getParameter("email");
-			String pwd = req.getParameter("password");
-			String name = "";
+			MemberDao memberDao = new MemberDao();
+			memberDao.setConnection(conn);
 			
-			sql += "SELECT MNAME, EMAIL";
-			sql += " FROM MEMBER";
-			sql += " WHERE EMAIL = ?";
-			sql += " AND PWD = ?";
-
-			pstmt = conn.prepareStatement(sql);
+			MemberDto memberDto = memberDao.memberExist(email, pwd);
 			
-			pstmt.setString(colIndex++, email);
-			pstmt.setString(colIndex, pwd);
-			
-			rs = pstmt.executeQuery();
-			
-			// 회원이다
-			if(rs.next()) {
-				email = rs.getString("EMAIL");
-				name = rs.getString("MNAME");
-				
-				MemberDto memberDto = new MemberDto();
-				
-				memberDto.setEmail(email);
-				memberDto.setName(name);
-				
+			// 회원이 없다면 로그인 실패 페이지로 이동
+			if(memberDto == null) {
+				RequestDispatcher rd = 
+					req.getRequestDispatcher("./LoginFail.jsp");
+				rd.forward(req, res);				
+			}else {
+				// 회원이 존재한다면 세션에 담고 회원 전체 페이지로 이동
 				HttpSession session = req.getSession();
-				session.setAttribute("memberDto", memberDto);
+				session.setAttribute("member", memberDto);
 				
 				res.sendRedirect("../member/list");
-			}else {
-				RequestDispatcher rd = 
-						req.getRequestDispatcher("./LoginFail.jsp");
-				rd.forward(req, res);
 			}
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			throw new ServletException(e);
-		}finally {
-			if(rs != null) {
-				try {
-					rs.close();
-				}catch (SQLException e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
-			}
-			
-			// 상태 해제
-			if(pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
-			}
 		}
 
 	}

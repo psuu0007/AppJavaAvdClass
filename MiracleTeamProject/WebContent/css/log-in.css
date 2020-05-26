@@ -1,0 +1,358 @@
+@charset "UTF-8";
+
+div {
+	display: block;
+}
+
+hr {
+	border: 0;
+}
+
+button {
+	border: 0;
+	cursor: pointer;
+}
+
+#root {
+	background-color: #f3f5f7;
+	width: 1000px;
+	margin: auto;
+}
+
+.member-card-layout {
+	height: 465px;
+    padding: 50px 84px 85px 84px;
+}
+
+.member-card {
+	position: relative;
+	margin: 0 auto;
+	width: 450px;
+	height: 500px;
+	background-color: #fff;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+}
+
+.member-card-join {
+	position: relative;
+	margin: 0 auto;
+	width: 450px;
+	height: 620px;
+	background-color: #fff;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+	box-sizing: border-box;
+}
+
+.member-card-war {
+	width: 450px;
+	height: 620px;
+}
+
+#main-email {
+	width: 280px;
+}
+
+#eqEmail {
+	position: absolute;
+	top: 230px;
+	right: 20px;
+	width: 100px;
+	height: 30px;
+}
+
+.member-card-layout-inner {
+	margin: 0 40px;
+}
+
+.member-card-layout__logo {
+	width: 370px;
+	height: 152px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.member-card-layout__logo-image {
+	width: 160px;
+	height: 140px;
+}
+
+.info-div {
+	width: 370px;
+	height: 562px;
+}
+
+.easy-login {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 19px;
+}
+
+.facebook-bnt {
+	width: 370px;
+	height: 56px;
+	background-color: #3c5a99;
+	border-radius: 3px;
+	padding: 3px 0px 0px 2px;
+	cursor: pointer;
+}
+
+.apple-bnt {
+	width: 370px;
+	height: 56px;
+	background-color: #212529;
+	border-radius: 3px;
+	margin-top: 12px;
+	padding: 3px 0px 0px 2px;
+	cursor: pointer;
+}
+
+.or-line {
+	width: 370px;
+	height: 14px;
+	margin-top: 24px;
+	font-weight: 400;
+	font-size: 12px;
+	color: #c5cbd0;
+	text-align: center;
+	line-height: 14px;
+}
+
+.hr-left, .hr-right {
+	width: 160px;
+	height: 1px;
+	background-color: #dddfe4
+}
+
+.hr-left {
+	float: left;
+}
+
+.hr-right {
+	float: right;
+}
+
+.login__email-title {
+	margin-top: 42px;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.input-box {
+	width: 370px;
+	height: 41px;
+	margin-top: 27px;
+	position: relative;
+	padding: 10px 0 11px;
+	border-bottom: 1px solid #dddfe4;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+.email-input {
+	margin-top: 27px;
+	padding: 10px 0 11px;
+	border-bottom: 1px solid #dddfe4;
+}
+
+.input-contents {
+	border: 0;
+	background-color: transparent;
+	outline: 0; /* 테두리 제거 */
+	width: 400px;
+	font-size: 16px;
+}
+
+.member-input-wrong-message {
+	font-weight: 400;
+	font-size: 14px;
+	margin-top: 15px;
+	position: relative;
+	padding-left: 24px;
+	color: #fe453b;
+}
+
+.email-wrong-message {
+	position: absolute;
+	visibility: hidden;
+	right: 20px;
+	top: 300px;
+	width: 200px;
+	height: 200px;
+	font-weight: 400;
+	font-size: 14px;
+	margin-top: 15px;
+	color: #fe453b;
+}
+
+.wrong-img {
+	padding-top: 2px;
+	float: left;
+	margin-right: 3px;
+	width: 200px;
+}
+
+.warning {
+	position: absolute;
+	left: 0;
+	top: 2px;
+	content: "";
+	display: block;
+	width: 16px;
+	height: 16px;
+	background-size: 16px 16px;
+}
+
+.member-input__label {
+	color: #7b858e;
+	position: absolute;
+	left: 0;
+	top: 11px;
+	transform-origin: bottom left;
+	transition: all .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+.checks {
+	width: 370px;
+	height: 40px;
+}
+
+.login-check {
+	width: 180px;
+	height: 24px;
+	margin-top: 16px;
+	float: left;
+}
+
+.checks input[type="checkbox"] { /* 실제 체크박스는 화면에서 숨김 */
+	display: none;
+}
+
+.checks input[type="checkbox"]+label {
+	position: relative;
+	padding-left: 30px; /* 글자와 체크박스 사이의 간격을 변경 */
+	color: #52595f;
+}
+
+.checks input[type="checkbox"]+label:before { /* 가짜 체크박스 */
+	content: '';
+	position: absolute;
+	left: 0;
+	top: -2px; /* 이 값을 변경해서 글자와의 정렬 */
+	width: 21px; /* 체크박스의 너비를 지정 */
+	height: 21px; /* 체크박스의 높이를 지정 */
+	text-align: center;
+	background: #ffffff;
+	border: 1px solid #dddfe4;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.checks input[type="checkbox"]:checked+label:before { /* 체크박스를 체크했을때 */
+	content: '\2714';
+	color: #1ea1f7;
+	background: #ffffff;
+	border: 1px solid #1ea1f7;
+	cursor: pointer;
+}
+
+.btn_group {
+	margin-top: 25px;
+	font-family: 나눔고딕;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.btn_group input {
+	border: 1px solid skyblue;
+	padding: 5px;
+	border-radius: 5px;
+	color: white;
+	background-color: skyblue;
+	height: 40px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.btn_group input:hover {
+	background-color: rgba(0, 0, 0, 0);
+	color: skyblue;
+}
+
+.signUp {
+	
+	float: right;
+}
+
+.login-button {
+	font-size: 16px;
+	border-radius: 3px;
+	color: #fff;
+	border: 0;
+	height: 56px;
+	margin-top: 30px;
+	width: 100%;
+	font-weight: 700;
+	text-align: center;
+	background-color: #DDDFE4;
+}
+
+.hello-text {
+	position: relative;
+	text-align: center;
+	margin-top: 16px;
+}
+
+.signUp-link {
+	margin-left: 12px;
+}
+
+.member-link {
+	font-weight: 400;
+	font-size: 14px;
+	color: #1ea1f7;
+}
+
+.box {
+	width: 120px;
+	height: 120px;
+	border-radius: 70%;
+	overflow: hidden;
+	margin: auto;
+}
+
+.profile {
+	width: 100%;
+	height: 100%;
+	object-fssssit: cover;
+	margin: auto;
+}
+
+.user-name {
+	text-align: center;
+}
+
+#main-bnt {
+	width: 250px;
+	height: 30px;
+	background-color: white;
+	border-radius: 10px;
+	margin: 0px 60px;
+}
+
+.profile-bnt {
+	width: 370px;
+	height: 56px;
+	background-color: white;
+	border-radius: 3px;
+	margin-top: 16px;
+	box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .2);
+}
+
+.profile-info {
+	text-align: center;
+	font-size: 30px;
+	line-height: 19px;
+	margin-bottom: 40px;
+	text-shadow: aqua;
+}
