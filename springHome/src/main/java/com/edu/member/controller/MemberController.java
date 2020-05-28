@@ -1,8 +1,9 @@
 package com.edu.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.edu.member.model.MemberDto;
 import com.edu.member.service.MemberService;
+import com.edu.util.Paging;
 
 @Controller
 public class MemberController {
@@ -67,9 +69,21 @@ public class MemberController {
 	public String MemberList(Model model) {
 		log.info("Welcome MemberList!");
 		
-		List<MemberDto> memberList = memberService.memberSelectList();
+		int totalCount = memberService.memberSelectTotalCount();
+		
+		Paging memberPaging = new Paging(totalCount, 1);
+		int start = memberPaging.getPageBegin();
+		int end = memberPaging.getPageEnd();
+		
+		List<MemberDto> memberList = 
+			memberService.memberSelectList(start, end);
 
+		Map<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("memberPaging", memberPaging);
+		
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("pagingMap", pagingMap);
 		
 		return "member/MemberListView";
 	}
@@ -83,7 +97,6 @@ public class MemberController {
 		return "member/MemberForm";
 	}
 	
- 
 	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
 	public String memberAdd(MemberDto memberDto, Model model) {
 		log.info("call memberAdd_ctr! {}", memberDto);
@@ -93,4 +106,42 @@ public class MemberController {
 		return "redirect:/member/list.do";
 	} 
 	
+	// 회원 수정 화면으로
+	@RequestMapping(value = "/member/update.do", method = RequestMethod.GET)
+	public String memberUpdate(int no, Model model) {
+		log.info("call memberUpdate! {}", no);
+		
+		MemberDto memberDto = memberService.memberSelectOne(no);
+		
+		model.addAttribute("memberDto", memberDto);
+		
+		return "member/MemberUpdateForm";
+	}
+	
+	
+	
+	
+	// 회원수정
+	@RequestMapping(value = "/member/updateCtr.do"
+			, method = RequestMethod.POST)
+	public String memberUpdateCtr(MemberDto memberDto, Model model) {
+		log.info("call memberUpdateCtr! " + memberDto);
+		
+		memberService.memberUpdateOne(memberDto);
+		
+		return "redirect:/member/list.do";
+	}
+	
+	// 회원삭제
+	@RequestMapping(value = "/member/deleteCtr.do"
+			, method = RequestMethod.GET)
+	public String memberDeleteCtr(int no, Model model) {
+		log.info("call memberDeleteCtr! " + no);
+		
+		memberService.memberDeleteOne(no);
+		
+		return "redirect:/member/list.do";
+	}
+	
+		
 }

@@ -15,14 +15,13 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDao memberDao;
 	
 	@Override
-	public List<MemberDto> memberSelectList() {
+	public List<MemberDto> memberSelectList(int start, int end) {
 		// TODO Auto-generated method stub
-		List<MemberDto> memberList = memberDao.memberSelectList();
+		List<MemberDto> memberList = memberDao.memberSelectList(start, end);
 		
 		return memberList;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public MemberDto memberExist(String email, String password) {
 		// TODO Auto-generated method stub
@@ -37,8 +36,29 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		memberDao.memberInsertOne(memberDto);
 	}
-=======
-	
->>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
+
+	@Override
+	public MemberDto memberSelectOne(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.memberSelectOne(no);
+	}
+
+	@Override
+	public void memberUpdateOne(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		memberDao.memberUpdateOne(memberDto);
+	}
+
+	@Override
+	public int memberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.memberDeleteOne(no);
+	}
+
+	@Override
+	public int memberSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return memberDao.memberSelectTotalCount();
+	}
 	
 }

@@ -1,8 +1,8 @@
 package com.edu.member.dao;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,17 @@ public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	String namespace = "com.edu.member.";
+	
 	@Override
-	public List<MemberDto> memberSelectList() {
-		// TODO Auto-generated method stub
+	public List<MemberDto> memberSelectList(int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+		
 		List<MemberDto> memberList = 
-				sqlSession.selectList("com.edu.member.memberSelectList");
+				sqlSession.selectList(namespace + "memberSelectList"
+				, map);
 		
 		return memberList;
 	}
@@ -35,7 +41,7 @@ public class MemberDaoImpl implements MemberDao{
 		paramMap.put("pwd", password);
 		
 		MemberDto memberDto = 
-			sqlSession.selectOne("com.edu.member.memberExist", paramMap);
+			sqlSession.selectOne(namespace + "memberExist", paramMap);
 		
 		return memberDto;
 	}
@@ -44,30 +50,34 @@ public class MemberDaoImpl implements MemberDao{
 	public void memberInsertOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
 		
-		sqlSession.insert("com.edu.member.memberInsertOne", memberDto);
-=======
-import java.util.List;
+		sqlSession.insert(namespace + "memberInsertOne", memberDto);
+	}
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-import com.edu.member.model.MemberDto;
-
-@Repository
-public class MemberDaoImpl implements MemberDao{
-
-	@Autowired
-	SqlSessionTemplate sqlSession;
-	
 	@Override
-	public List<MemberDto> memberSelectList() {
+	public MemberDto memberSelectOne(int no) {
 		// TODO Auto-generated method stub
-		List<MemberDto> memberList = 
-				sqlSession.selectList("com.edu.member.memberSelectList");
 		
-		return memberList;
->>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
+		return sqlSession.selectOne(namespace + "memberSelectOne"
+				, no);
+	}
+
+	@Override
+	public void memberUpdateOne(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + "memberUpdateOne", memberDto);
+	}
+
+	@Override
+	public int memberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.delete(namespace + "memberDeleteOne", no);
+	}
+
+	@Override
+	public int memberSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "memberSelectTotalCount");
 	}
 
 }

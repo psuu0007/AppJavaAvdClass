@@ -17,12 +17,16 @@
 			javaType="java.util.Date"/>
 	</resultMap>
 
-<<<<<<< HEAD
-	<select id="memberSelectList" 
+	<select id="memberSelectList" parameterType="map"
 		resultMap="memberResultMap">
-		SELECT MNO, MNAME, EMAIL, CRE_DATE
-		FROM MEMBER
-		ORDER BY MNO DESC
+		SELECT MNO, EMAIL, MNAME, CRE_DATE
+		FROM ( 	SELECT ROWNUM RNUM, M.MNO, M.EMAIL, M.MNAME, M.CRE_DATE
+				FROM ( 	SELECT MNO, EMAIL, MNAME, CRE_DATE
+						FROM MEMBER
+						ORDER BY MNO DESC) M
+		) MEMBER
+		WHERE RNUM BETWEEN #{start} AND #{end}
+		
 	</select>
 	
 	<select id="memberExist" parameterType="map" 
@@ -43,16 +47,35 @@
 			, SYSDATE, SYSDATE)
 	</insert>
 
-
-</mapper>
-
-=======
-	<select id="memberSelectList" parameterType="map" 
+	<select id="memberSelectOne" parameterType="int"
 		resultMap="memberResultMap">
 		SELECT MNO, MNAME, EMAIL, CRE_DATE
 		FROM MEMBER
-		ORDER BY MNO DESC
+		WHERE MNO = #{no}	
 	</select>
 
+	<update id="memberUpdateOne" parameterType="memberDto">
+		UPDATE MEMBER
+		<set>
+			<if test="email != ''">EMAIL = #{email},</if>
+			<if test="name != ''">MNAME = #{name},</if>
+			MOD_DATE = SYSDATE
+		</set>
+		WHERE MNO = #{no}
+	</update>
+
+	<delete id="memberDeleteOne" parameterType="java.lang.Integer">
+		DELETE FROM MEMBER
+		WHERE MNO = #{no}
+	</delete>
+
+	<select id="memberSelectTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+	</select>
+	
 </mapper>
->>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
+
+
+
+
