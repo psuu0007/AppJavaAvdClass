@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.edu.member">
+
+	<resultMap type="com.edu.member.model.MemberDto" 
+		id="memberResultMap">
+		<id column="MNO" property="no"/>
+		<result column="MNAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PWD" property="password"/>
+		<result column="CRE_DATE" property="createdDate"
+			javaType="java.util.Date"/>
+		<result column="MOD_DATE" property="modifiedDate"
+			javaType="java.util.Date"/>
+	</resultMap>
+
+	<select id="memberSelectList" parameterType="map" 
+		resultMap="memberResultMap">
+		SELECT MNO, MNAME, EMAIL, CRE_DATE
+		FROM MEMBER
+		ORDER BY MNO DESC
+	</select>
+
+</mapper>
