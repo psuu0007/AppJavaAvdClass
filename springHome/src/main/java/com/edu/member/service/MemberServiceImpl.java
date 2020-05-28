@@ -22,6 +22,23 @@ public class MemberServiceImpl implements MemberService{
 		return memberList;
 	}
 
+<<<<<<< HEAD
+	@Override
+	public MemberDto memberExist(String email, String password) {
+		// TODO Auto-generated method stub
+		
+		MemberDto memberDto = memberDao.memberExist(email, password);
+		
+		return memberDto;
+	}
+
+	@Override
+	public void memberInsertOne(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		memberDao.memberInsertOne(memberDto);
+	}
+=======
 	
+>>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
 	
 }

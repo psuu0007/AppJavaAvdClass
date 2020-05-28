@@ -17,6 +17,36 @@
 			javaType="java.util.Date"/>
 	</resultMap>
 
+<<<<<<< HEAD
+	<select id="memberSelectList" 
+		resultMap="memberResultMap">
+		SELECT MNO, MNAME, EMAIL, CRE_DATE
+		FROM MEMBER
+		ORDER BY MNO DESC
+	</select>
+	
+	<select id="memberExist" parameterType="map" 
+		resultMap="memberResultMap">
+		SELECT MNAME, EMAIL
+		FROM MEMBER
+		WHERE EMAIL = #{email}
+		AND PWD = #{pwd}
+	</select>
+	
+	<insert id="memberInsertOne" parameterType="memberDto">
+		INSERT INTO MEMBER
+		VALUE(MNO
+			, EMAIL, PWD, MNAME
+			, CRE_DATE, MOD_DATE)
+		VALUES(MEMBER_MNO_SEQ.NEXTVAL
+			, #{email}, #{password}, #{name}
+			, SYSDATE, SYSDATE)
+	</insert>
+
+
+</mapper>
+
+=======
 	<select id="memberSelectList" parameterType="map" 
 		resultMap="memberResultMap">
 		SELECT MNO, MNAME, EMAIL, CRE_DATE
@@ -25,3 +55,4 @@
 	</select>
 
 </mapper>
+>>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
