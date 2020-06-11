@@ -157,9 +157,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int memberSelectTotalCount() {
+	public int memberSelectTotalCount(String searchOption
+			, String keyword) {
 		// TODO Auto-generated method stub
-		return memberDao.memberSelectTotalCount();
+		return memberDao.memberSelectTotalCount(searchOption
+				, keyword);
 	}
 
 	@Override
@@ -167,5 +169,14 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDao.fileSelectStoredFileName(no);
 	}
+
+	@Override
+	public int memberSelectCurPage(String searchOption
+			, String keyword, int no) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.memberSelectCurPage(searchOption, keyword, no);
+	}
+
 	
 }

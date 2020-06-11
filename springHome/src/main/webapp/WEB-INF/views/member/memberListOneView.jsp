@@ -8,6 +8,69 @@
 <head>
 <title>회원정보 상세조회</title>
 
+<<<<<<< HEAD
+<script type="text/javascript" 
+	src="/springHome/resources/js/jquery-3.5.1.js"></script>
+
+<script type="text/javascript">
+	function pageMoveListFnc(){
+		var noObj = $('#no');
+		var keywordObj = $('#keyword');
+		var searchOptionObj = $('#searchOption');
+		
+		var url = '';
+		
+		url += './list.do?';
+		url += 'no=' + noObj.val();
+		url += '&keyword=' + keywordObj.val();
+		url += '&searchOption=' + searchOptionObj.val();
+		
+		location.href = url;
+	}
+		
+</script>
+
+</head>
+
+<body>
+	<jsp:include page="/WEB-INF/views/Header.jsp" />
+	
+	<h1>회원정보 상세조회</h1>
+	<form action='./update.do' method='get'>
+		번호: ${memberDto.no}
+		<br>
+		이름: ${memberDto.name}
+		<br>
+		이메일: ${memberDto.email}
+		<br>
+		
+		첨부파일:
+		<c:choose>
+			<c:when test="${empty fileList}">
+				첨부파일이 없습니다.<br>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="row" items="${fileList}">
+<!-- 					<input type="button" value="이미지" name="file"> -->
+					${row.ORIGINAL_FILE_NAME}
+					(${row.FILE_SIZE}KB)<br>
+					<img alt="image not found" 
+						src="<c:url value='/img/${row.STORED_FILE_NAME}'/>">
+					<br>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		
+		가입일: <fmt:formatDate value="${memberDto.createdDate}" 
+			pattern="yyyy-MM-dd hh:mm"/> 
+		<br>
+		<div>
+			<input type="hidden" id='no' name="no" value="${memberDto.no}">
+			<input type="hidden" id='searchOption' 
+				name="searchOption" value="${searchOption}">
+			<input type="hidden" id='keyword' 
+				name="keyword" value="${keyword}">
+=======
 <script type="text/javascript">
 	function pageMoveListFnc(){
 		location.href = "./list.do";
@@ -51,6 +114,7 @@
 		<br>
 		<div>
 			<input type="hidden" name="no" value="${memberDto.no}">
+>>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
 		</div>
 		<div>
 			<input type='submit' value='수정하기 페이지'>

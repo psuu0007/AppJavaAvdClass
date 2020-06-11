@@ -17,7 +17,8 @@ public interface MemberDao {
 	public int memberUpdateOne(MemberDto memberDto);
 	public int memberDeleteOne(int no);
 	
-	public int memberSelectTotalCount();
+	public int memberSelectTotalCount(String searchOption
+			, String keyword);
 	
 	public void insertFile(Map<String, Object> map);
 	
@@ -26,6 +27,7 @@ public interface MemberDao {
 	public Map<String, Object> fileSelectStoredFileName(int no);
 	public int fileDelete(int parentSeq);
 	
-	
+	public int memberSelectCurPage(
+			String searchOption, String keyword, int no);
 }
 

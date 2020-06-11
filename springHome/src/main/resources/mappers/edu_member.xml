@@ -121,9 +121,60 @@
 		WHERE MNO = #{no}
 	</delete>
 
-	<select id="memberSelectTotalCount" resultType="int">
+	<select id="memberSelectTotalCount" resultType="int" 
+		parameterType="map">
 		SELECT COUNT(*)
 		FROM MEMBER
+		<include refid="search"></include>
+	</select>
+	
+	<insert id="insertFile" parameterType="map">
+		INSERT INTO TB_FILE
+			(IDX, PARENT_SEQ, ORIGINAL_FILE_NAME,
+			STORED_FILE_NAME, FILE_SIZE, CRE_DATE)
+		VALUES(
+			TB_FILE_IDX_SEQ.NEXTVAL, #{parent_seq}, #{original_file_name},
+			#{stored_file_name}, #{file_size}, SYSDATE
+		)
+	</insert>
+	
+	<select id="fileSelectList" parameterType="int"
+		resultType="map">
+		SELECT IDX, ORIGINAL_FILE_NAME, STORED_FILE_NAME
+			, ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE
+		FROM TB_FILE
+		WHERE PARENT_SEQ = #{no}
+	</select>
+	
+
+	<delete id="fileDelete" parameterType="int">
+			DELETE FROM TB_FILE
+			WHERE PARENT_SEQ = #{parentSeq}
+	</delete>
+	
+	<select id="fileSelectStoredFileName" parameterType="int"
+		resultType="map">
+		SELECT IDX, STORED_FILE_NAME
+		FROM TB_FILE
+		WHERE PARENT_SEQ = #{no}
+	</select>
+	
+	
+	<select id="memberSelectCurPage" parameterType="map"
+		resultType="int">
+		SELECT floor((rnum-1) / 10)+1 no
+		FROM ( SELECT ROWNUM RNUM, M.MNO, M.EMAIL 
+			, M.MNAME, M.CRE_DATE,
+			M.ORIGINAL_FILE_NAME FROM
+			( SELECT MEMBER.MNO MNO, MEMBER.EMAIL EMAIL
+			, MEMBER.MNAME MNAME, MEMBER.CRE_DATE CRE_DATE
+			, TB_FILE.ORIGINAL_FILE_NAME ORIGINAL_FILE_NAME
+			FROM MEMBER LEFT OUTER JOIN TB_FILE
+			ON MEMBER.MNO = TB_FILE.PARENT_SEQ
+			<include refid="search"></include>
+			ORDER BY MNO DESC )
+		M )
+		where mno = #{no}
 	</select>
 	
 	<insert id="insertFile" parameterType="map">

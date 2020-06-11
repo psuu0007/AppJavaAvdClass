@@ -73,10 +73,11 @@ public class MemberController {
 			, method = {RequestMethod.GET, RequestMethod.POST})
 	public String MemberList(@RequestParam(defaultValue = "1") 
 			int curPage
+			, @RequestParam(defaultValue = "0") int no
 			, @RequestParam(defaultValue = "all") String searchOption
 			, @RequestParam(defaultValue = "") String keyword
 			, Model model) {
-		log.info("Welcome MemberList! " + curPage + " : " 
+		log.info("Welcome MemberList! " + curPage + " : ???? " 
 			+ searchOption + " : " + keyword);
 		
 		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
@@ -84,12 +85,27 @@ public class MemberController {
 			searchOption = "mname";
 		}
 		
-		int totalCount = memberService.memberSelectTotalCount();
+		// 페이징을 위한 전체 회원목록 갯수
+		int totalCount = 
+			memberService.memberSelectTotalCount(
+					searchOption, keyword
+		);
+		
+		// 이전 페이지로 회원의 번호가 명확하게 나온 경우
+		// 자신의 curPage 찾는 로직 
+		if(no != 0) {
+			curPage 
+				= memberService.memberSelectCurPage(
+						searchOption, keyword, no);
+		}
+		
+//		
+//		System.out.println("????????: " + curPage);
 		
 		Paging memberPaging = new Paging(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
-		
+
 		List<MemberFileDto> memberList = 
 			memberService.memberSelectList(searchOption, keyword
 				, start, end);
@@ -119,8 +135,10 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/listOne.do"
 		, method = RequestMethod.GET)
-	public String memberListOne(int no, Model model) {
-		log.info("call memberListOne! - {} ", no);
+	public String memberListOne(int no, String searchOption,
+			String keyword, Model model) {
+		log.info("call memberListOne! - " + no + "\n" + searchOption
+				+ "\n" + keyword);
 		
 		Map<String, Object> map = memberService.memberSelectOne(no);
 		
@@ -131,6 +149,8 @@ public class MemberController {
 		
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("fileList", fileList);
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("keyword", keyword);
 		
 		return "member/memberListOneView";
 	}

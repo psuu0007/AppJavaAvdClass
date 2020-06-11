@@ -40,14 +40,30 @@ nav > ul > li > a:hover {
 }
 </style>
 
+<!-- <script type="text/javascript"  -->
+<!-- 	src="/springHome/resources/js/jquery-3.5.1.js"></script> -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 	function goPageFnc(pageNumber){
+<<<<<<< HEAD
+		
+// 		alert(pageNumber);
+		var curPage = $('#curPage');
+		
+// 		curPage.value = pageNumber;
+		curPage.val(pageNumber);
+		
+		var pagingForm = $('#pagingForm');
+=======
 // 		alert(pageNumber);
 		var curPage = document.getElementById('curPage');
 		
 		curPage.value = pageNumber;
 		
 		var pagingForm = document.getElementById('pagingForm');
+>>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
 		pagingForm.submit();
 	}
 	

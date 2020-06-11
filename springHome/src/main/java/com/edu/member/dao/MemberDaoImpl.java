@@ -83,9 +83,17 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public int memberSelectTotalCount() {
+	public int memberSelectTotalCount(String searchOption
+			, String keyword) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "memberSelectTotalCount");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("searchOption", searchOption);
+		paramMap.put("keyword", keyword);
+		
+		return sqlSession.selectOne(namespace + "memberSelectTotalCount"
+				, paramMap);
 	}
 
 	@Override
@@ -114,5 +122,20 @@ public class MemberDaoImpl implements MemberDao{
 		// TODO Auto-generated method stub
 		return sqlSession.delete(namespace + "fileDelete", parentSeq);
 	}
+
+	@Override
+	public int memberSelectCurPage(String searchOption
+			, String keyword, int no) {
+		// TODO Auto-generated method stub
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchOption", searchOption);
+		paramMap.put("keyword", keyword);
+		paramMap.put("no", no);
+			
+		return sqlSession.selectOne(namespace 
+				+ "memberSelectCurPage", paramMap);
+	}
+
+	
 
 }

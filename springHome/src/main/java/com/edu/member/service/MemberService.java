@@ -25,6 +25,10 @@ public interface MemberService {
 	
 	public int memberDeleteOne(int no);
 	
-	public int memberSelectTotalCount();
+	public int memberSelectTotalCount(String searchOption
+			, String keyword);
 	public Map<String, Object> fileSelectStoredFileName(int no);
+	
+	public int memberSelectCurPage(String searchOption
+			, String keyword, int no);
 }
