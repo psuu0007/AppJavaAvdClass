@@ -47,8 +47,6 @@ nav > ul > li > a:hover {
 
 <script type="text/javascript">
 	function goPageFnc(pageNumber){
-<<<<<<< HEAD
-		
 // 		alert(pageNumber);
 		var curPage = $('#curPage');
 		
@@ -56,14 +54,6 @@ nav > ul > li > a:hover {
 		curPage.val(pageNumber);
 		
 		var pagingForm = $('#pagingForm');
-=======
-// 		alert(pageNumber);
-		var curPage = document.getElementById('curPage');
-		
-		curPage.value = pageNumber;
-		
-		var pagingForm = document.getElementById('pagingForm');
->>>>>>> branch 'master' of https://github.com/psuu0007/AppJavaAvdClass.git
 		pagingForm.submit();
 	}
 	
