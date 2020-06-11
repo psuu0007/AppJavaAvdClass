@@ -31,6 +31,13 @@ public class MemberDto {
 		this.email = email;
 		this.createdDate = createdDate;
 	}
+	
+	public MemberDto(int no, String name, String email) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.email = email;
+	}
 
 	public int getNo() {
 		return no;

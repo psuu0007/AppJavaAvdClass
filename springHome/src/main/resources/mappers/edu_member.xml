@@ -5,6 +5,21 @@
   
 <mapper namespace="com.edu.member">
 
+	<sql id="search">
+		<choose>
+        	<!-- 검색옵션이 전체 검색일 경우  -->
+        	<when test="searchOption == 'all'">
+        		WHERE MNAME LIKE '%' || #{keyword} || '%'
+        		OR    EMAIL LIKE '%' || #{keyword} || '%'
+        	</when>
+        	
+        	<!-- 전체 검색이 아닐 경우 -->
+        	<otherwise>
+        		WHERE ${searchOption} LIKE '%' || #{keyword} || '%'
+        	</otherwise>
+        </choose>
+	</sql>
+
 	<resultMap type="com.edu.member.model.MemberDto" 
 		id="memberResultMap">
 		<id column="MNO" property="no"/>
@@ -16,40 +31,76 @@
 		<result column="MOD_DATE" property="modifiedDate"
 			javaType="java.util.Date"/>
 	</resultMap>
+	
+	<resultMap type="com.edu.member.model.MemberFileDto" 
+		id="memberFileResultMap">
+		<result column="MNO" property="no"/>
+		<result column="MNAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PWD" property="password"/>
+		<result column="CRE_DATE" property="createdDate"
+			javaType="java.util.Date"/>
+		<result column="MOD_DATE" property="modifiedDate"
+			javaType="java.util.Date"/>
+		
+		<result column="IDX"             	property="idx"	/>
+		<result column="PARENT_SEQ"       	property="parentSeq"	/>
+		<result column="ORIGINAL_FILE_NAME"	property="originalFileName"	/>
+		<result column="STORED_FILE_NAME"  	property="storedFileName"	/>
+		<result column="FILE_SIZE"         	property="fileSize"	/>
+		<result column="CRE_DATE"          	property="creDate"
+			javaType="java.util.Date"/>	
+	</resultMap>
+	
 
 	<select id="memberSelectList" parameterType="map"
-		resultMap="memberResultMap">
-		SELECT MNO, EMAIL, MNAME, CRE_DATE
-		FROM ( 	SELECT ROWNUM RNUM, M.MNO, M.EMAIL, M.MNAME, M.CRE_DATE
-				FROM ( 	SELECT MNO, EMAIL, MNAME, CRE_DATE
-						FROM MEMBER
-						ORDER BY MNO DESC) M
-		) MEMBER
-		WHERE RNUM BETWEEN #{start} AND #{end}
-		
+		resultMap="memberFileResultMap">
+		SELECT MF.RNUM, MF.MNO, MF.EMAIL, MF.MNAME
+			, MF.CRE_DATE, MF.ORIGINAL_FILE_NAME
+   		FROM (
+      			SELECT ROWNUM RNUM, M.MNO, M.EMAIL
+      				, M.MNAME, M.CRE_DATE, M.ORIGINAL_FILE_NAME
+       			FROM(
+	           		SELECT MEMBER.MNO MNO, MEMBER.EMAIL EMAIL
+	           			, MEMBER.MNAME MNAME, MEMBER.CRE_DATE CRE_DATE
+	             		, TB_FILE.ORIGINAL_FILE_NAME ORIGINAL_FILE_NAME
+	           		FROM MEMBER LEFT OUTER JOIN TB_FILE
+			        ON MEMBER.MNO = TB_FILE.PARENT_SEQ
+			        
+	        		<include refid="search"></include>
+	        	
+			        ORDER BY MNO DESC
+           		) M
+        ) MF
+        WHERE MF.RNUM BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="memberExist" parameterType="map" 
 		resultMap="memberResultMap">
-		SELECT MNAME, EMAIL
+		SELECT MNO, MNAME, EMAIL
 		FROM MEMBER
 		WHERE EMAIL = #{email}
 		AND PWD = #{pwd}
 	</select>
 	
-	<insert id="memberInsertOne" parameterType="memberDto">
+	<insert id="memberInsertOne" parameterType="memberDto"
+		useGeneratedKeys="true" keyProperty="no">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT MEMBER_MNO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
 		INSERT INTO MEMBER
 		VALUE(MNO
 			, EMAIL, PWD, MNAME
 			, CRE_DATE, MOD_DATE)
-		VALUES(MEMBER_MNO_SEQ.NEXTVAL
+		VALUES(#{no}
 			, #{email}, #{password}, #{name}
 			, SYSDATE, SYSDATE)
 	</insert>
 
 	<select id="memberSelectOne" parameterType="int"
 		resultMap="memberResultMap">
-		SELECT MNO, MNAME, EMAIL, CRE_DATE
+		SELECT MNO, MNAME, EMAIL, PWD, CRE_DATE
 		FROM MEMBER
 		WHERE MNO = #{no}	
 	</select>
@@ -59,6 +110,7 @@
 		<set>
 			<if test="email != ''">EMAIL = #{email},</if>
 			<if test="name != ''">MNAME = #{name},</if>
+			<if test="password != ''">PWD = #{password},</if>
 			MOD_DATE = SYSDATE
 		</set>
 		WHERE MNO = #{no}
@@ -73,6 +125,38 @@
 		SELECT COUNT(*)
 		FROM MEMBER
 	</select>
+	
+	<insert id="insertFile" parameterType="map">
+		INSERT INTO TB_FILE
+			(IDX, PARENT_SEQ, ORIGINAL_FILE_NAME,
+			STORED_FILE_NAME, FILE_SIZE, CRE_DATE)
+		VALUES(
+			TB_FILE_IDX_SEQ.NEXTVAL, #{parent_seq}, #{original_file_name},
+			#{stored_file_name}, #{file_size}, SYSDATE
+		)
+	</insert>
+	
+	<select id="fileSelectList" parameterType="int"
+		resultType="map">
+		SELECT IDX, ORIGINAL_FILE_NAME, STORED_FILE_NAME
+			, ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE
+		FROM TB_FILE
+		WHERE PARENT_SEQ = #{no}
+	</select>
+	
+
+	<delete id="fileDelete" parameterType="int">
+			DELETE FROM TB_FILE
+			WHERE PARENT_SEQ = #{parentSeq}
+	</delete>
+	
+	<select id="fileSelectStoredFileName" parameterType="int"
+		resultType="map">
+		SELECT IDX, STORED_FILE_NAME
+		FROM TB_FILE
+		WHERE PARENT_SEQ = #{no}
+	</select>
+	
 	
 </mapper>
 

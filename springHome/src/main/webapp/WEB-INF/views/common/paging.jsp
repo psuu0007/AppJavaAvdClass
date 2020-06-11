@@ -32,11 +32,31 @@ nav > ul > li > a:hover {
      background-color: #5D5D5D; 
      font-weight: bold; 
  }  
+ 
+.active {
+	color: #FFD9EC;
+	background-color: #5D5D5D;
+	font-weight: bold;  
+}
 </style>
 
 <script type="text/javascript">
 	function goPageFnc(pageNumber){
-		alert(pageNumber);
+// 		alert(pageNumber);
+		var curPage = document.getElementById('curPage');
+		
+		curPage.value = pageNumber;
+		
+		var pagingForm = document.getElementById('pagingForm');
+		pagingForm.submit();
+	}
+	
+	window.onload = function(){
+		var curPage = document.getElementById('curPage');
+		var pageButtonId = 'pageButton' + curPage.value;
+		
+		document.getElementById(pageButtonId)
+			.setAttribute('class', 'active');
 	}
 </script>
 
@@ -53,7 +73,7 @@ nav > ul > li > a:hover {
 				begin="${pagingMap.memberPaging.blockBegin}" 
 				end="${pagingMap.memberPaging.blockEnd}">
 				
-				<li>
+				<li id='pageButton${num}'>
 					<a href="#" onclick="goPageFnc(${num});">
 						<c:out value="${num}"/>
 					</a>

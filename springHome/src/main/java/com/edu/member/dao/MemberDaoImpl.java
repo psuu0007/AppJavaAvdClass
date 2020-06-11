@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.edu.member.model.MemberDto;
+import com.edu.member.model.MemberFileDto;
+
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -19,12 +21,16 @@ public class MemberDaoImpl implements MemberDao{
 	String namespace = "com.edu.member.";
 	
 	@Override
-	public List<MemberDto> memberSelectList(int start, int end) {
+	public List<MemberFileDto> memberSelectList(String searchOption, 
+			String keyword, int start, int end) {
+	
 		Map<String, Object> map = new HashMap<>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<MemberDto> memberList = 
+		List<MemberFileDto> memberList = 
 				sqlSession.selectList(namespace + "memberSelectList"
 				, map);
 		
@@ -62,9 +68,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public void memberUpdateOne(MemberDto memberDto) {
+	public int memberUpdateOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		sqlSession.update(namespace + "memberUpdateOne", memberDto);
+		
+		return sqlSession.update(namespace + "memberUpdateOne"
+				, memberDto);
 	}
 
 	@Override
@@ -78,6 +86,33 @@ public class MemberDaoImpl implements MemberDao{
 	public int memberSelectTotalCount() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "memberSelectTotalCount");
+	}
+
+	@Override
+	public void insertFile(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + "insertFile", map);
+	}
+
+	
+	@Override
+	public List<Map<String, Object>> fileSelectList(int no) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectList(namespace + "fileSelectList", no);
+	}
+
+	@Override
+	public Map<String, Object> fileSelectStoredFileName(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace 
+				+ "fileSelectStoredFileName", no);
+	}
+	
+	@Override
+	public int fileDelete(int parentSeq) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "fileDelete", parentSeq);
 	}
 
 }
